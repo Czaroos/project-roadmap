@@ -7,11 +7,13 @@
   align-items: center;
   cursor: pointer;
   margin: 16px;
+  padding: 16px;
 
   &.round {
     width: 50px;
     height: 50px;
     border-radius: 50%;
+    font-size: 2.5em;
   }
 
   &.default {
@@ -22,6 +24,7 @@
 
   &:hover {
     background: $primary;
+    color: $secondary;
 
     > svg {
       fill: $secondary;

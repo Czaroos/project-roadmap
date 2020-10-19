@@ -10,9 +10,12 @@ import './style.scss';
 
 export const Header = ({ currentUser }: HeaderProps) => {
   return (
-    <div className="header">
+    <div className={`header ${currentUser ? 'userLogged' : ''}`}>
       {currentUser ? (
-        <Button onClick={() => auth.signOut()}>LOG OUT</Button>
+        <>
+          <Button variant="round">+</Button>
+          <Button onClick={() => auth.signOut()}>LOG OUT</Button>
+        </>
       ) : (
         <>
           <Button>LOG IN</Button>

@@ -1,0 +1,18 @@
+$primaryLight: #29526d;
+$primary: #123852;
+$primaryDark: #032236;
+$secondary: #486f88;
+$secondaryLight: #708fa3;
+$white: #fff;
+
+$font: 'Roboto', 'sans-serif';
+
+* {
+  box-sizing: border-box;
+  font-family: $font;
+  margin: 0;
+  padding: 0;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  outline: none;
+}

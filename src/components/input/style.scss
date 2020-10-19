@@ -1,0 +1,10 @@
+@import '../../global.scss';
+
+.input {
+  border: 0;
+  border-bottom: 1px solid $secondaryLight;
+  text-align: center;
+  font-size: 1.5rem;
+  background: transparent;
+  color: $white;
+}

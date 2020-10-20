@@ -9,12 +9,14 @@ export const createUser = async (user: firebase.User | null, rest?: any[]) => {
   if (!snapshot.exists) {
     const { displayName, email } = user;
     const createdAt = new Date();
+    const projects: string[] = [];
 
     try {
       await userRef.set({
         displayName,
         email,
         createdAt,
+        projects,
         ...rest,
       });
     } catch (err) {

@@ -1,33 +1,35 @@
 import React, { useEffect, useState } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
 
 import { auth, User, createUser } from './firebase';
 
-import { SignIn } from './modules';
+import { SignIn, UserDashboard } from './modules';
 
 import UserContext from './providers/UserContext';
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const history = useHistory();
 
   useEffect(() => {
-    document.body.style.cursor = 'progress';
     const unsubscribeFromAuth = auth.onAuthStateChanged(async (user) => {
       if (user) {
         const userRef = await createUser(user);
 
         userRef?.onSnapshot((snapshot) => {
-          const { email, displayName, createdAt } = snapshot.data()!;
+          const { email, displayName, createdAt, projects } = snapshot.data()!;
 
           setCurrentUser({
             id: snapshot.id,
             email,
             displayName,
             createdAt,
+            projects,
           });
+
+          history.push(`/dashboard/${snapshot.id}`);
         });
       } else setCurrentUser(null);
-      document.body.style.cursor = 'default';
     });
     return () => unsubscribeFromAuth();
   }, []);
@@ -36,7 +38,8 @@ const App = () => {
     <UserContext.Provider value={currentUser}>
       <Switch>
         <Route exact path="/" component={SignIn} />
-        <Route exact path="/dashboard/:userId" component={SignIn} />
+        {/* TODO protect route */}
+        <Route exact path="/dashboard/:userId" component={UserDashboard} />
       </Switch>
     </UserContext.Provider>
   );

@@ -1,0 +1,24 @@
+@import '../../global.scss';
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $primary;
+  color: $secondary;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+  margin: 24px;
+  cursor: pointer;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+
+  &:hover {
+    background-color: $primaryDark;
+    color: $secondaryLight;
+  }
+}

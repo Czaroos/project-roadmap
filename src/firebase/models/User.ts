@@ -3,4 +3,5 @@ export interface User {
   displayName: string;
   email: string;
   createdAt: Date;
+  projects: string[];
 }

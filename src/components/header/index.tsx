@@ -1,20 +1,35 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import { auth } from '../../firebase';
 
-import { HeaderProps } from './model';
+import { Button, Avatar } from '..';
 
-import { Button } from '../button';
+import UserContext from '../../providers/UserContext';
 
 import './style.scss';
 
-export const Header = ({ currentUser }: HeaderProps) => {
+export const Header = () => {
+  const currentUser = useContext(UserContext);
+  const history = useHistory();
+
   return (
     <div className={`header ${currentUser ? 'userLogged' : ''}`}>
       {currentUser ? (
         <>
           <Button variant="round">+</Button>
-          <Button onClick={() => auth.signOut()}>LOG OUT</Button>
+          <h2>YOUR PROJECTS</h2>
+          <div className="userActions">
+            <Avatar displayName={currentUser.displayName} />
+            <Button
+              onClick={() => {
+                auth.signOut();
+                history.push('/');
+              }}
+            >
+              LOG OUT
+            </Button>
+          </div>
         </>
       ) : (
         <>

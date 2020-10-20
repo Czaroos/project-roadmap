@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { auth } from '../..';
+import { auth } from '../../firebase';
 
 import { HeaderProps } from './model';
 

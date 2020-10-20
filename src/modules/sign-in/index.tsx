@@ -1,35 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 
 import { Input, Button, Header, Footer } from '../../components';
 
 import { GoogleIcon } from '../../assets';
 
-import { signInWithGoogle, auth, User, createUser } from '../../firebase';
+import { signInWithGoogle } from '../../firebase';
 
 import './style.scss';
+import { RouteComponentProps } from 'react-router-dom';
 
-export const SignIn = () => {
-  const [currentUser, setCurrentUser] = useState<User | null>(null);
+import UserContext from '../../providers/UserContext';
 
-  useEffect(() => {
-    const unsubscribeFromAuth = auth.onAuthStateChanged(async (user) => {
-      if (user) {
-        const userRef = await createUser(user);
-
-        userRef?.onSnapshot((snapshot) => {
-          const { email, displayName, createdAt } = snapshot.data()!;
-
-          setCurrentUser({
-            id: snapshot.id,
-            email,
-            displayName,
-            createdAt,
-          });
-        });
-      } else setCurrentUser(null);
-    });
-    return () => unsubscribeFromAuth();
-  });
+export const SignIn = (props: RouteComponentProps) => {
+  const currentUser = useContext(UserContext);
 
   return (
     <div className="signIn">

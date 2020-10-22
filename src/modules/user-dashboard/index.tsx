@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 
-import { Header, Footer } from '../../components';
+import { Header, Footer, Project } from '../../components';
 
 import UserContext from '../../providers/UserContext';
 
@@ -13,9 +13,12 @@ export const UserDashboard = () => {
     <div className="userDashboard">
       <Header />
       <div className="projects">
-        {projects.map((project) => {
+        {/* {projects.map((project) => {
           <div>{project}</div>;
-        })}
+        })} */}
+        <Project />
+        <Project />
+        <Project />
       </div>
       <Footer />
     </div>

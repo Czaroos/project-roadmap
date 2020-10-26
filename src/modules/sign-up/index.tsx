@@ -52,7 +52,7 @@ export const SignUp = () => {
       clearForm();
     } catch (err) {
       //TODO: handle error
-      console.log(err);
+      console.log(err.message);
     }
   };
 

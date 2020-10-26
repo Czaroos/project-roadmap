@@ -8,8 +8,8 @@ export const Avatar = ({ displayName }: AvatarProps) => {
   const splitName = displayName.split(' ');
 
   return (
-    <div className="avatar">{`${splitName[0].charAt(0)}${splitName[1].charAt(
-      0
-    )}`}</div>
+    <div className="avatar">
+      {splitName.map((splitStr, idx) => idx <= 1 && splitStr.charAt(0))}
+    </div>
   );
 };

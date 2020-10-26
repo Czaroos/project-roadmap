@@ -1,0 +1,31 @@
+@import '../../global.scss';
+
+.signUp {
+  width: 100vw;
+  height: 100vh;
+  background: $primaryLight;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  color: $secondaryLight;
+
+  .inputs {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 16px;
+
+    > h4 {
+      align-self: end;
+    }
+  }
+
+  .alreadySignedUp {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}

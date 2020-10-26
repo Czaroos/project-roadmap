@@ -7,15 +7,16 @@ import UserContext from '../../providers/UserContext';
 import './style.scss';
 
 export const UserDashboard = () => {
-  const { projects } = useContext(UserContext)!;
+  const currentUser = useContext(UserContext);
 
   return (
     <div className="userDashboard">
       <Header />
       <div className="projects">
-        {/* {projects.map((project) => {
-          <div>{project}</div>;
-        })} */}
+        {currentUser &&
+          currentUser.projects.map((project) => {
+            <div>{project}</div>;
+          })}
         <Project />
         <Project />
         <Project />

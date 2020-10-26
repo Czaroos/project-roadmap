@@ -3,7 +3,7 @@ import { Route, Switch, useHistory } from 'react-router-dom';
 
 import { auth, User, createUser } from './firebase';
 
-import { SignIn, UserDashboard } from './modules';
+import { SignIn, UserDashboard, SignUp } from './modules';
 
 import UserContext from './providers/UserContext';
 
@@ -18,7 +18,6 @@ const App = () => {
 
         userRef?.onSnapshot((snapshot) => {
           const { email, displayName, createdAt, projects } = snapshot.data()!;
-
           setCurrentUser({
             id: snapshot.id,
             email,
@@ -35,13 +34,14 @@ const App = () => {
   }, []);
 
   return (
-    <UserContext.Provider value={currentUser}>
-      <Switch>
+    <Switch>
+      <UserContext.Provider value={currentUser}>
         <Route exact path="/" component={SignIn} />
+        <Route exact path="/register" component={SignUp} />
         {/* TODO protect route */}
         <Route exact path="/dashboard/:userId" component={UserDashboard} />
-      </Switch>
-    </UserContext.Provider>
+      </UserContext.Provider>
+    </Switch>
   );
 };
 

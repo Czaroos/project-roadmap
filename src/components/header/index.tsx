@@ -33,8 +33,8 @@ export const Header = () => {
         </>
       ) : (
         <>
-          <Button>LOG IN</Button>
-          <Button>REGISTER</Button>
+          <Button onClick={() => history.push('/')}>LOG IN</Button>
+          <Button onClick={() => history.push('/register')}>REGISTER</Button>
         </>
       )}
     </div>

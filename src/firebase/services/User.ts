@@ -1,6 +1,9 @@
 import { firestore } from '../config';
 
-export const createUser = async (user: firebase.User | null, rest?: any[]) => {
+export const createUser = async (
+  user: firebase.User | null,
+  ...rest: object[]
+) => {
   if (!user) return;
 
   const userRef = firestore.doc(`users/${user.uid}`);
@@ -11,14 +14,19 @@ export const createUser = async (user: firebase.User | null, rest?: any[]) => {
     const createdAt = new Date();
     const projects: string[] = [];
 
-    try {
-      await userRef.set({
+    const newUser = Object.assign(
+      {},
+      {
         displayName,
         email,
         createdAt,
         projects,
-        ...rest,
-      });
+      },
+      ...rest
+    );
+
+    try {
+      await userRef.set(newUser);
     } catch (err) {
       //handle error
       console.log('error creating user', err.message);

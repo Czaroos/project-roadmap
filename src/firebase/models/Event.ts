@@ -4,4 +4,5 @@ export interface Event {
   from: Date;
   to: Date;
   color: string;
+  projectId: string;
 }

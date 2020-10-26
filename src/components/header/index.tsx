@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { auth } from '../../firebase';
+import { auth, createProject } from '../../firebase';
 
 import { Button, Avatar } from '..';
 
@@ -17,7 +17,12 @@ export const Header = () => {
     <div className={`header ${currentUser ? 'userLogged' : ''}`}>
       {currentUser ? (
         <>
-          <Button variant="round">+</Button>
+          <Button
+            variant="round"
+            onClick={() => createProject('test', currentUser.id)}
+          >
+            +
+          </Button>
           <h2>YOUR PROJECTS</h2>
           <div className="userActions">
             <Avatar displayName={currentUser.displayName} />

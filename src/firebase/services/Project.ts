@@ -43,7 +43,7 @@ export const createProject = async (name: string, userId: string) => {
   return newProject;
 };
 
-export const getUserProjects = async (projectIds: string[]) => {
+export const getProjectsByIds = async (projectIds: string[]) => {
   try {
     const projects = Promise.all(
       projectIds.map(async (id) => {

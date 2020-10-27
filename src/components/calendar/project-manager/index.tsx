@@ -10,7 +10,7 @@ import { NextMonthArrow, PreviousMonthArrow, YearButton } from '../components';
 
 import './style.scss';
 
-export const ProjectThumbnail = (props: CalendarProps) => {
+export const ProjectManager = (props: CalendarProps) => {
   const {
     date,
     previousYear,
@@ -34,13 +34,13 @@ export const ProjectThumbnail = (props: CalendarProps) => {
   const { month, year } = date;
 
   return (
-    <div className={`projectThumbnail`}>
+    <div className={`projectManager`}>
       <div className={`header`}>
         {cloneElement(previousYearButton, {
           onClick: setPreviousYear,
           dateFragment: previousYear,
         })}
-        <h2>{`${monthToString(language, month).slice(0, 3)}, ${year}`}</h2>
+        <h2>{`${monthToString(language, month)}, ${year}`}</h2>
         {cloneElement(nextYearButton, {
           onClick: setNextYear,
           dateFragment: nextYear,
@@ -48,7 +48,7 @@ export const ProjectThumbnail = (props: CalendarProps) => {
       </div>
       <div className={`days`}>
         {language.DAYS_OF_WEEK.map((dayOfWeek) => (
-          <h2 key={dayOfWeek}>{dayOfWeek.slice(0, 1)}</h2>
+          <h2 key={dayOfWeek}>{dayOfWeek.slice(0, 3)}</h2>
         ))}
 
         {previousMonthDays.map((day) => (

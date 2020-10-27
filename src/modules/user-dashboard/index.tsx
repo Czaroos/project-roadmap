@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 
 import { Header, Footer, ProjectOverview } from '../../components';
 
-import { Project, getUserProjects } from '../../firebase';
+import { Project, getProjectsByIds } from '../../firebase';
 
 import UserContext from '../../providers/UserContext';
 
@@ -16,7 +16,7 @@ export const UserDashboard = () => {
   useEffect(() => {
     (async () => {
       try {
-        const projects = await getUserProjects(currentUser.projects);
+        const projects = await getProjectsByIds(currentUser.projects);
         setProjects(projects);
       } catch (err) {
         //TODO: handle error
@@ -31,7 +31,13 @@ export const UserDashboard = () => {
       <div className="projects">
         {projects &&
           projects.map((project) => {
-            return <ProjectOverview name={project.name} key={project.id} />;
+            return (
+              <ProjectOverview
+                name={project.name}
+                key={project.id}
+                id={project.id}
+              />
+            );
           })}
       </div>
       <Footer />

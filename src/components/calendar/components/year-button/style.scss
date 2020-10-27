@@ -1,0 +1,17 @@
+@import '../../../../global.scss';
+
+.yearButton {
+  height: 44px;
+  width: 44px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin: 0px 24px;
+
+  &:hover {
+    background: $secondaryLight;
+    color: $white;
+  }
+}

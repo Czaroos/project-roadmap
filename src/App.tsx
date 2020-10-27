@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { Route, Switch, useHistory } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 import { auth, User, createUser } from './firebase';
 
-import { SignIn, UserDashboard, SignUp } from './modules';
+import { SignIn, UserDashboard, SignUp, ProjectManagement } from './modules';
 
 import UserContext from './providers/UserContext';
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
-  const history = useHistory();
 
   useEffect(() => {
     const unsubscribeFromAuth = auth.onAuthStateChanged(async (user) => {
@@ -25,8 +24,6 @@ const App = () => {
             createdAt,
             projects,
           });
-
-          history.push(`/dashboard/${snapshot.id}`);
         });
       } else setCurrentUser(null);
     });
@@ -38,8 +35,13 @@ const App = () => {
       <UserContext.Provider value={currentUser}>
         <Route exact path="/" component={SignIn} />
         <Route exact path="/register" component={SignUp} />
-        {/* TODO protect route */}
+        {/* TODO protect routes */}
         <Route exact path="/dashboard/:userId" component={UserDashboard} />
+        <Route
+          exact
+          path="/projects/:projectId"
+          component={ProjectManagement}
+        />
       </UserContext.Provider>
     </Switch>
   );

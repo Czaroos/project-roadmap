@@ -4,4 +4,5 @@ export * from './header';
 export * from './footer';
 export * from './avatar';
 export * from './project-overview';
+export * from './project-details';
 export * from './modal';

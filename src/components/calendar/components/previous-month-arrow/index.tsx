@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '../../..';
+import { Button } from '../..';
 import { PreviousMonthArrowIcon } from './icon/PreviousMonthArrowIcon';
 import './style.scss';
 

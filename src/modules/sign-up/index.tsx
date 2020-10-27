@@ -1,9 +1,11 @@
-import React, { useState, MouseEvent } from 'react';
+import React, { useContext, useEffect, useState, MouseEvent } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { Input, Button, Header, Footer } from '../../components';
 
 import { auth, createUser } from '../../firebase';
+
+import UserContext from '../../providers/UserContext';
 
 import './style.scss';
 
@@ -14,6 +16,12 @@ export const SignUp = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
 
   const history = useHistory();
+
+  const currentUser = useContext(UserContext);
+
+  useEffect(() => {
+    currentUser && history.push(`/dashboard/${currentUser.id}`);
+  }, [currentUser]);
 
   const clearForm = () => {
     setDisplayName('');

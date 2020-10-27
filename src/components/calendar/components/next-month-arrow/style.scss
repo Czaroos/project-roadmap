@@ -1,6 +1,6 @@
-@import '../../../../../global.scss';
+@import '../../../../global.scss';
 
-.previousMonthArrow {
+.nextMonthArrow {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,7 +11,7 @@
   border-radius: 50%;
   background: $secondary;
   position: absolute;
-  left: -20px;
+  right: -20px;
 
   &:hover {
     border: 4px solid $white;

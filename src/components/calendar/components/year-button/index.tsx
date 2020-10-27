@@ -1,5 +1,7 @@
 import React from 'react';
-import { Button } from '../../..';
+import { Button } from '../..';
+
+import './style.scss';
 
 export const YearButton = (props: Button) => {
   const { dateFragment, onClick, className, children } = props;

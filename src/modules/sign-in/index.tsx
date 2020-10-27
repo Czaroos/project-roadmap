@@ -1,4 +1,4 @@
-import React, { useState, MouseEvent } from 'react';
+import React, { useContext, useEffect, useState, MouseEvent } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { Input, Button, Header, Footer } from '../../components';
@@ -7,6 +7,8 @@ import { GoogleIcon } from '../../assets';
 
 import { auth, signInWithGoogle } from '../../firebase';
 
+import UserContext from '../../providers/UserContext';
+
 import './style.scss';
 
 export const SignIn = () => {
@@ -14,6 +16,12 @@ export const SignIn = () => {
   const [password, setPassword] = useState('');
 
   const history = useHistory();
+
+  const currentUser = useContext(UserContext);
+
+  useEffect(() => {
+    currentUser && history.push(`/dashboard/${currentUser.id}`);
+  }, [currentUser]);
 
   const clearForm = () => {
     setEmail('');

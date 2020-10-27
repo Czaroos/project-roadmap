@@ -1,15 +1,17 @@
 import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { auth, createProject } from '../../firebase';
+import { auth } from '../../firebase';
 
 import { Button, Avatar, Modal } from '..';
 
 import UserContext from '../../providers/UserContext';
 
+import { HeaderProps } from './model';
+
 import './style.scss';
 
-export const Header = () => {
+export const Header = ({ projectName }: HeaderProps) => {
   const [modalOpen, setModalOpen] = useState(false);
 
   const currentUser = useContext(UserContext);
@@ -22,16 +24,15 @@ export const Header = () => {
       <div className={`header ${currentUser ? 'userLogged' : ''}`}>
         {currentUser ? (
           <>
-            <Button
-              variant="round"
-              // onClick={() => createProject('test', currentUser.id)}
-              onClick={() => setModalOpen(true)}
-            >
+            <Button variant="round" onClick={() => setModalOpen(true)}>
               +
             </Button>
-            <h2>YOUR PROJECTS</h2>
+            <h2>{`${projectName ? projectName : 'YOUR PROJECTS'}`}</h2>
             <div className="userActions">
-              <Avatar displayName={currentUser.displayName} />
+              <Avatar
+                displayName={currentUser.displayName}
+                onClick={() => history.push(`/dashboard/${currentUser.id}`)}
+              />
               <Button
                 onClick={() => {
                   auth.signOut();

@@ -1,25 +1,38 @@
-import React, { useContext } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 
-import { Header, Footer, Project } from '../../components';
+import { Header, Footer, ProjectOverview } from '../../components';
+
+import { Project, getUserProjects } from '../../firebase';
 
 import UserContext from '../../providers/UserContext';
 
 import './style.scss';
 
 export const UserDashboard = () => {
+  const [projects, setProjects] = useState<Project[]>();
+
   const currentUser = useContext(UserContext);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const projects = await getUserProjects(currentUser.projects);
+        setProjects(projects);
+      } catch (err) {
+        //TODO: handle error
+        console.log(err.message);
+      }
+    })();
+  }, [currentUser]);
 
   return (
     <div className="userDashboard">
       <Header />
       <div className="projects">
-        {currentUser &&
-          currentUser.projects.map((project) => {
-            <div>{project}</div>;
+        {projects &&
+          projects.map((project) => {
+            return <ProjectOverview name={project.name} key={project.id} />;
           })}
-        <Project />
-        <Project />
-        <Project />
       </div>
       <Footer />
     </div>

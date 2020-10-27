@@ -35,7 +35,7 @@ export const ProjectThumbnail = (props: CalendarProps) => {
 
   return (
     <div className={`calendarContainer`}>
-      <div className={`header`}>
+      <div className={`calendarHeader`}>
         {cloneElement(previousYearButton, {
           onClick: setPreviousYear,
           dateFragment: previousYear,

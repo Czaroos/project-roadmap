@@ -1,5 +1,7 @@
 import { firestore } from '../config';
 
+import { Project } from '../models';
+
 export const createProject = async (name: string, userId: string) => {
   const project = await firestore
     .collection('projects')
@@ -39,4 +41,27 @@ export const createProject = async (name: string, userId: string) => {
   }
 
   return newProject;
+};
+
+export const getUserProjects = async (projectIds: string[]) => {
+  try {
+    const projects = Promise.all(
+      projectIds.map(async (id) => {
+        const project = await firestore.doc(`projects/${id}`).get();
+        const projectObj = Object.assign(
+          {},
+          { id: project.id },
+          project.data()
+        );
+        return projectObj as Project;
+      })
+    );
+
+    return projects;
+  } catch (err) {
+    //TODO: Handle error
+    console.log(err.message);
+  }
+
+  return null;
 };

@@ -1,29 +1,29 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState } from "react";
 
-import { Input, Button } from '..';
+import { Input, Button } from "../..";
 
-import { createProject } from '../../firebase';
+import { createProject } from "../../../firebase";
 
-import UserContext from '../../providers/UserContext';
+import UserContext from "../../../providers/UserContext";
 
-import { ModalProps } from './model';
+import { ModalProps } from "./model";
 
-import './style.scss';
+import "./style.scss";
 
-export const Modal = ({ setModalOpen }: ModalProps) => {
-  const [projectName, setProjectName] = useState('');
+export const ProjectModal = ({ setModalOpen }: ModalProps) => {
+  const [projectName, setProjectName] = useState("");
 
   const currentUser = useContext(UserContext);
 
   const handleSubmit = async () => {
     //TODO: complete validation
-    if (projectName == '') {
-      alert('Project name cannot be empty');
+    if (projectName == "") {
+      alert("Project name cannot be empty");
       return;
     }
 
     await createProject(projectName, currentUser.id);
-    setProjectName('');
+    setProjectName("");
     setModalOpen(false);
   };
 

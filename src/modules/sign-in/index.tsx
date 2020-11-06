@@ -1,39 +1,40 @@
-import React, { useContext, useEffect, useState, MouseEvent } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useContext, useEffect, useState, MouseEvent } from "react";
+import { useHistory } from "react-router-dom";
 
-import { Input, Button, Header, Footer } from '../../components';
+import { Input, Button, Header, Footer } from "../../components";
 
-import { GoogleIcon } from '../../assets';
+import { GoogleIcon } from "../../assets";
 
-import { auth, signInWithGoogle } from '../../firebase';
+import { auth, signInWithGoogle } from "../../firebase";
 
-import UserContext from '../../providers/UserContext';
+import UserContext from "../../providers/UserContext";
 
-import './style.scss';
+import "./style.scss";
 
 export const SignIn = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const history = useHistory();
 
   const currentUser = useContext(UserContext);
 
   useEffect(() => {
-    currentUser && history.push(`/dashboard/${currentUser.id}`);
+    console.log(auth.currentUser);
+    auth.currentUser && history.push(`/dashboard/${currentUser.id}`);
   }, [currentUser]);
 
   const clearForm = () => {
-    setEmail('');
-    setPassword('');
+    setEmail("");
+    setPassword("");
   };
 
   const handleSubmit = async (e: MouseEvent) => {
     e.preventDefault();
 
     //TODO: complete validation
-    if (email == '' || password == '') {
-      alert('All fields must be filled in.');
+    if (email == "" || password == "") {
+      alert("All fields must be filled in.");
       return;
     }
 
@@ -59,7 +60,7 @@ export const SignIn = () => {
       </div>
       <div className="noAccount">
         <h3>Don't have an account yet?</h3>
-        <Button onClick={() => history.push('/register')}>SIGN UP</Button>
+        <Button onClick={() => history.push("/register")}>SIGN UP</Button>
         <h3>
           Or... sign in with your <span>G</span>
           <span>o</span>

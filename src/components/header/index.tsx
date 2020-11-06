@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 
 import { auth } from "../../firebase";
 
-import { Button, Avatar, Modal } from "..";
+import { Button, Avatar, ProjectModal, EventModal } from "..";
 
 import { PlusIcon } from "../../assets";
 
@@ -25,9 +25,13 @@ export const Header = ({ projectName }: HeaderProps) => {
     history.push("/");
   }, []);
 
+  const showProjectModal = modalOpen && !projectName;
+  const showEventModal = modalOpen && projectName;
+
   return (
     <>
-      {modalOpen && <Modal setModalOpen={setModalOpen} />}
+      {showProjectModal && <ProjectModal setModalOpen={setModalOpen} />}
+      {showEventModal && <EventModal setModalOpen={setModalOpen} />}
       <div className={`header ${currentUser ? "userLogged" : ""}`}>
         {currentUser ? (
           <>

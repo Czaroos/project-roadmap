@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { Route, Switch } from "react-router-dom";
 
-import { auth, User, createUser } from './firebase';
+import { auth, User, createUser } from "./firebase";
 
-import { SignIn, UserDashboard, SignUp, ProjectManagement } from './modules';
+import { SignIn, UserDashboard, SignUp, ProjectManagement } from "./modules";
 
-import UserContext from './providers/UserContext';
+import UserContext from "./providers/UserContext";
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
@@ -15,8 +15,8 @@ const App = () => {
       if (user) {
         const userRef = await createUser(user);
 
-        userRef?.onSnapshot((snapshot) => {
-          const { email, displayName, createdAt, projects } = snapshot.data()!;
+        userRef.onSnapshot((snapshot) => {
+          const { email, displayName, createdAt, projects } = snapshot.data();
           setCurrentUser({
             id: snapshot.id,
             email,
@@ -25,7 +25,9 @@ const App = () => {
             projects,
           });
         });
-      } else setCurrentUser(null);
+      } else {
+        setCurrentUser(null);
+      }
     });
     return () => unsubscribeFromAuth();
   }, []);

@@ -1,6 +1,19 @@
+@import "../../global.scss";
+
 .projectOverview {
+  margin: 0 auto;
+  width: 450px;
+
   > h2 {
+    margin: 0 50px 4px 0;
+    border: 1px solid $primary;
+    border-radius: 4px;
     text-align: center;
     cursor: pointer;
+
+    &:hover {
+      color: $secondary;
+      background: $primary;
+    }
   }
 }

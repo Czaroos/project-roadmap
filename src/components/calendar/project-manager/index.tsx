@@ -1,14 +1,14 @@
-import React, { cloneElement } from 'react';
+import React, { cloneElement } from "react";
 
-import { CalendarProps } from '..';
+import { CalendarProps } from "..";
 
-import { monthToString } from '../utils/string';
+import { monthToString } from "../utils/string";
 
-import { EN } from '../languages';
+import { EN } from "../languages";
 
-import { NextMonthArrow, PreviousMonthArrow, YearButton } from '../components';
+import { NextMonthArrow, PreviousMonthArrow, YearButton } from "../components";
 
-import './style.scss';
+import "./style.scss";
 
 export const ProjectManager = (props: CalendarProps) => {
   const {
@@ -25,17 +25,17 @@ export const ProjectManager = (props: CalendarProps) => {
     currentMonthDays,
     nextMonthDays,
     language = EN,
-    previousMonthArrow = <PreviousMonthArrow />,
-    nextMonthArrow = <NextMonthArrow />,
-    previousYearButton = <YearButton />,
-    nextYearButton = <YearButton />,
+    previousMonthArrow = <PreviousMonthArrow className="previousBig" />,
+    nextMonthArrow = <NextMonthArrow className="nextBig" />,
+    previousYearButton = <YearButton className="yearBig" />,
+    nextYearButton = <YearButton className="yearBig" />,
   } = props;
 
   const { month, year } = date;
 
   return (
     <div className={`projectManager`}>
-      <div className={`header`}>
+      <div className={`calendarHeader`}>
         {cloneElement(previousYearButton, {
           onClick: setPreviousYear,
           dateFragment: previousYear,
@@ -48,23 +48,25 @@ export const ProjectManager = (props: CalendarProps) => {
       </div>
       <div className={`days`}>
         {language.DAYS_OF_WEEK.map((dayOfWeek) => (
-          <h2 key={dayOfWeek}>{dayOfWeek.slice(0, 3)}</h2>
+          <h2 key={dayOfWeek} className="dayOfWeek">
+            {dayOfWeek.slice(0, 3)}
+          </h2>
         ))}
 
         {previousMonthDays.map((day) => (
-          <div key={day} className={`otherMonthDay`}>
+          <div key={day} className={`day otherMonthDay`}>
             <h3>{day}</h3>
           </div>
         ))}
 
         {currentMonthDays.map((day) => (
-          <div key={day}>
+          <div key={day} className="day">
             <h3>{day}</h3>
           </div>
         ))}
 
         {nextMonthDays.map((day) => (
-          <div key={day} className={`otherMonthDay`}>
+          <div key={day} className={`day otherMonthDay`}>
             <h3>{day}</h3>
           </div>
         ))}

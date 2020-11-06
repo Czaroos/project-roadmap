@@ -1,4 +1,4 @@
-@import '../../global.scss';
+@import "../../global.scss";
 
 .signUp {
   width: 100vw;
@@ -9,6 +9,7 @@
   justify-content: space-between;
   align-items: center;
   color: $secondaryLight;
+  overflow-y: auto;
 
   .inputs {
     display: grid;

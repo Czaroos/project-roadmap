@@ -1,15 +1,15 @@
-@import '../../../global.scss';
+@import "../../../global.scss";
 
 .projectManager {
-  height: 100%;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   background: $primary;
   border-radius: 4px;
   user-select: none;
   position: relative;
-  margin: 20px;
 
-  .header {
+  .calendarHeader {
     width: 100%;
     height: 240px;
     display: inline-flex;
@@ -17,19 +17,37 @@
     align-items: center;
     color: $secondary;
     position: relative;
-    margin-bottom: 64px;
 
     > h2 {
       color: $secondaryLight;
+    }
+
+    .yearBig {
+      width: 60px;
+      height: 60px;
+      font-size: 1.5rem;
+      margin: 0 auto;
     }
   }
 
   .days {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(7, 1fr);
     justify-items: center;
     align-items: center;
-    gap: 64px;
+  }
+
+  .dayOfWeek {
+    margin-bottom: 24px;
+  }
+
+  .day {
+    width: 100%;
+    min-height: 128px;
+    border: 1px solid $secondary;
+    display: flex;
+    justify-content: center;
+    color: $white;
   }
 
   .otherMonthDay {
@@ -44,6 +62,23 @@
     left: 0;
     display: flex;
     justify-content: space-between;
+
+    > * {
+      width: 60px;
+      height: 60px;
+
+      > svg {
+        width: 16px;
+      }
+    }
+  }
+
+  .previousBig {
+    left: -30px;
+  }
+
+  .nextBig {
+    right: -30px;
   }
 
   .hidden {

@@ -1,14 +1,14 @@
-import React, { cloneElement } from 'react';
+import React, { cloneElement } from "react";
 
-import { CalendarProps } from '..';
+import { CalendarProps } from "..";
 
-import { monthToString } from '../utils/string';
+import { monthToString } from "../utils/string";
 
-import { EN } from '../languages';
+import { EN } from "../languages";
 
-import { NextMonthArrow, PreviousMonthArrow, YearButton } from '../components';
+import { NextMonthArrow, PreviousMonthArrow, YearButton } from "../components";
 
-import './style.scss';
+import "./style.scss";
 
 export const ProjectThumbnail = (props: CalendarProps) => {
   const {
@@ -35,7 +35,7 @@ export const ProjectThumbnail = (props: CalendarProps) => {
 
   return (
     <div className={`projectThumbnail`}>
-      <div className={`header`}>
+      <div className={`calendarHeader`}>
         {cloneElement(previousYearButton, {
           onClick: setPreviousYear,
           dateFragment: previousYear,
